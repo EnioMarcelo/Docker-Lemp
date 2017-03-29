@@ -1,5 +1,6 @@
 # Docker-Lemp
 Servidor LEMP com Docker
+- Linux, Nginx, MySQL, PHP
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 Com este script você conseguirá criar um servidor LEMP no Docker.
