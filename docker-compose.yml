@@ -12,6 +12,8 @@ services:
      links:
        - db
      restart: always
+     depends_on:
+       - db
      networks:
         buzza-lemp-network:
            ipv4_address: 10.5.0.7
@@ -45,6 +47,8 @@ services:
       ports:
          - '8082:80' 
       restart: always
+      depends_on:
+         - db
       networks:
          buzza-lemp-network:
             ipv4_address: 10.5.0.5
