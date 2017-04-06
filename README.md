@@ -1,5 +1,5 @@
-# Docker-Lemp
-Servidor LEMP com Docker
+# Docker-Lemp-PHP-7.0
+Servidor LEMP PHP 7.0 com Docker
 - Linux, Nginx, MySQL, PHP
 ------------------------------------------------------------------------------------------------------------------------------------------
 
