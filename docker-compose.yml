@@ -8,15 +8,16 @@ services:
      ports: 
        - "8080:80"
      volumes:
-       - $PWD/www:/app
+       - /Users/eniomarcelobuzaneli/Documents/Docker/Docker-Lemp-PHP-7.0/www:/app
+       - /Users/eniomarcelobuzaneli/Documents/Docker/Docker-Lemp-PHP-7.0/php/php.ini:/etc/php/7.0/fpm/php.ini
      links:
        - db
      restart: always
      depends_on:
        - db
      networks:
-        buzza-lemp-network:
-           ipv4_address: 10.5.0.7
+        - buzza-protocolo-network
+          
 
    db:
       image: ebuzaneli/buzza-server-mysql:5.6
@@ -25,15 +26,14 @@ services:
       ports:
          - "3307:3306"
       volumes:
-         - $PWD/mysql-data:/var/lib/mysql
+         - /Users/eniomarcelobuzaneli/Documents/Docker/Docker-Lemp-PHP-7.0/mysql-data:/var/lib/mysql
       environment:
          - MYSQL_ROOT_PASSWORD=123456
          - MYSQL_DATABASE=db_buzza
          - TZ=America/Campo_Grande
       restart: always
       networks:
-         buzza-lemp-network:
-            ipv4_address: 10.5.0.6
+        - buzza-protocolo-network
 
    phpmyadmin:
       image: ebuzaneli/buzza-phpmyadmin:latest 
@@ -48,10 +48,9 @@ services:
          - '8082:80' 
       restart: always
       depends_on:
-         - db
+        - db
       networks:
-         buzza-lemp-network:
-            ipv4_address: 10.5.0.5
+        - buzza-protocolo-network
 
 
    ssh:
@@ -63,20 +62,15 @@ services:
          - "SSH_PASSWORD=102030" 
          - TZ=America/Campo_Grande
       volumes:
-         - $PWD/www:/var/www/html
+         - /Users/eniomarcelobuzaneli/Documents/Docker/Docker-Lemp-PHP-7.0/www:/var/www/html
       ports:
          - '2222:22'
       restart: always
       networks:
-         buzza-lemp-network:
-            ipv4_address: 10.5.0.4
+        - buzza-protocolo-network
 
 
 
 networks:
-  buzza-lemp-network:
+  buzza-protocolo-network:
     driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1      
